@@ -1,14 +1,7 @@
-import os
-from langchain_openai import ChatOpenAI
-from dotenv import load_dotenv
+from llm import get_llm_with_fallback
 
-load_dotenv()
+llm = get_llm_with_fallback()
 
-llm = ChatOpenAI(
-    base_url="https://api.puter.com/puterai/openai/v1/",
-    api_key=os.getenv("PUTER_API_KEY"),
-    model="gpt-5.4-nano",
-)
 
 
 def weather_agent(state):
