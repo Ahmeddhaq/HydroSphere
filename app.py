@@ -438,7 +438,7 @@ with col2:
     <div class="panel-title">Reservoir</div>""", unsafe_allow_html=True)
     for k, v in data["reservoir"].items():
         label = k.replace("_", " ").title()
-        unit = " ML" if k in ["capacity", "current_storage"] else (" ML/d" if "flow" in k else "")
+        unit = " L" if k in ["capacity", "current_storage"] else (" L/d" if "flow" in k else "")
         st.markdown(f"""<div class="kv-row"><span class="kv-key">{label}</span><span class="kv-val">{v}{unit}</span></div>""", unsafe_allow_html=True)
     st.markdown("</div>", unsafe_allow_html=True)
 
