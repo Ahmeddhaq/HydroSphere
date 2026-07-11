@@ -332,6 +332,60 @@ div[data-testid="stButton"] > button:hover {
 thead tr th { background: rgba(196,82,26,0.10) !important; color: #C4521A !important; font-weight: 700 !important; }
 tbody tr:hover td { background: rgba(196,82,26,0.05) !important; }
 
+/* ── Mobile Responsive ── */
+@media (max-width: 768px) {
+
+    /* Hero */
+    .hero-banner {
+        padding: 1.5rem 1.2rem;
+        border-radius: 14px;
+    }
+    .hero-title {
+        font-size: 1.8rem;
+    }
+    .hero-subtitle {
+        font-size: 0.9rem;
+    }
+
+    /* Metric + data cards fill full width */
+    .metric-card, .data-panel, .analysis-card, .result-card, .reasoning-box {
+        width: 100% !important;
+        box-sizing: border-box;
+    }
+
+    /* Tighten card padding */
+    .metric-card  { padding: 0.9rem 1rem; }
+    .data-panel   { padding: 1rem; }
+    .result-card  { padding: 1.2rem; }
+    .analysis-card{ padding: 1rem; }
+
+    /* Metric value scales down */
+    .metric-value { font-size: 1.3rem; }
+
+    /* Section headers */
+    .section-header { font-size: 0.9rem; }
+
+    /* KV rows wrap on tiny screens */
+    .kv-row {
+        flex-wrap: wrap;
+        gap: 0.25rem;
+    }
+    .kv-key, .kv-val { font-size: 0.8rem; }
+
+    /* Analysis items */
+    .analysis-item span { font-size: 0.82rem; }
+
+    /* Gauge chart: let it shrink */
+    .js-plotly-plot { max-width: 100% !important; }
+}
+
+@media (max-width: 480px) {
+    .hero-title   { font-size: 1.4rem; }
+    .hero-badge   { font-size: 0.65rem; }
+    .metric-value { font-size: 1.1rem; }
+    .result-title { font-size: 0.85rem; }
+}
+
 </style>
 """, unsafe_allow_html=True)
 
@@ -547,7 +601,7 @@ if run:
             for _node, _output in _chunk.items():
                 _label = _AGENT_LABEL.get(_node, _node)
                 if _node == "decision":
-                    st.write("✨ Finalizing output — Decision & Allocation running...")
+                    st.write("Finalizing output — Decision & Allocation running...")
                 else:
                     st.write(f"⚙️ Running: {_label}")
                 result.update(_output)
@@ -567,7 +621,7 @@ if run:
     weather_anal   = result.get("weather_analysis", {})
 
     # ── Agent Analysis Summary Cards ──
-    st.markdown("#### 🔍 Agent Analysis Outputs")
+    st.markdown("#### Agent Analysis Outputs")
 
     agri_anal = result.get("agriculture_analysis", {})
     urban_anal = result.get("urban_analysis", {})
@@ -712,7 +766,7 @@ if run:
     st.markdown('<div style="margin-top:1.5rem"></div>', unsafe_allow_html=True)
 
     # ── Final Allocation ──
-    st.markdown("#### 💡 Final Water Allocation")
+    st.markdown("#### Final Water Allocation")
 
     alloc_col1, alloc_col2 = st.columns([1, 1])
 
@@ -831,4 +885,4 @@ if run:
     </div>
     """, unsafe_allow_html=True)
 
-    st.markdown('<div style="margin-top:2rem; text-align:center; color:#334155; font-size:0.78rem;">Powered by HydroSphere AI · Multi-Agent LangGraph Pipeline · IBM Research MVP</div>', unsafe_allow_html=True)
+    st.markdown('<div style="margin-top:2rem; text-align:center; color:#334155; font-size:0.78rem;">Powered by HydroSphere AI · Multi-Agent LangGraph Pipeline · IBM MVP</div>', unsafe_allow_html=True)
