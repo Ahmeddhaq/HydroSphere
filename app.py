@@ -616,8 +616,6 @@ if run:
             nonlocal rows_html
             label = key.replace("_", " ").title()
             display = _clean_value(val)
-            if len(display) > 160:
-                display = display[:157] + "…"
             rows_html += f'<div class="analysis-item">{label}<br><span>{display}</span></div>'
 
         if isinstance(analysis, dict):
