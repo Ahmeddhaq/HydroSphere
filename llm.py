@@ -12,6 +12,7 @@ Usage in any agent:
 import os
 import logging
 from dotenv import load_dotenv
+from langchain_groq import ChatGroq
 
 load_dotenv()
 
@@ -47,10 +48,10 @@ def get_llm():
             "Add at least one to your .env file."
         )
 
-    from langchain_groq import ChatGroq
+    
     fallback = ChatGroq(
         api_key=groq_key,
-        model="llama-3.3-70b-versatile",   # fast, capable, free-tier friendly
+        model="openai/gpt-oss-120b",   # fast, capable, free-tier friendly
         temperature=0.2,
     )
     logger.info("LLM: using Groq (fallback)")
