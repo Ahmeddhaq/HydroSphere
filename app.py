@@ -352,8 +352,17 @@ st.markdown("""
 <div class="hero-banner">
     <div class="hero-badge">Multi-Agent AI Platform</div>
     <h1 class="hero-title">HydroSphere AI</h1>
-    <p class="hero-subtitle">Agentic Water Intelligence System. Real-time Reservoir Analysis, Risk Assessment & Optimal Resource Allocation</p>
-    <p>Note: All data displayed is a mock/sample data.</p>
+    <p class="hero-subtitle">Project Overview
+
+HydroSphere AI demonstrates how multiple AI agents can collaboratively analyze water-related factors and generate transparent, explainable allocation decisions.
+
+Current demonstration:
+<li>6 Specialized AI Agents (agriculture, urban, reservoir, risk, weather, decision)</li>
+<li>LangGraph Orchestration</li>
+<li>Simulated Reservoir Scenario</li>
+<li>Explainable AI Decision Making</li></p>
+<p><u>Scenario</u>: This dataset represents a region experiencing below-average rainfall, high temperatures, declining reservoir levels (38% capacity), and increasing agricultural and urban water demand. HydroSphere AI analyzes these conditions to determine an optimal and explainable water allocation strategy while balancing essential urban supply, agricultural irrigation, and environmental sustainability.</p>
+    <p>NOTE: This demonstration uses simulated data to showcase the decision-making capabilities of the multi-agent system.</p>
 </div>
 """, unsafe_allow_html=True)
 
