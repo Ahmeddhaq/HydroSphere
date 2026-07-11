@@ -465,7 +465,7 @@ with c5:
     st.markdown(f"""
     <div class="metric-card">
         <div class="metric-label">⚡ Net Daily Flow</div>
-        <div class="metric-value" style="color:{flow_color}">{flow_symbol} {abs(net_flow)}<span class="metric-unit"> ML/d</span></div>
+        <div class="metric-value" style="color:{flow_color}">{flow_symbol} {abs(net_flow)}<span class="metric-unit"> L/d</span></div>
     </div>""", unsafe_allow_html=True)
 
 st.markdown('<div class="custom-divider"></div>', unsafe_allow_html=True)
