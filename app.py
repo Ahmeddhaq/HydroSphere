@@ -481,9 +481,6 @@ if st.session_state.page == "landing":
             Six specialized AI agents working in concert to analyze weather conditions,
             assess risk, and produce transparent, explainable allocation decisions, in real time.
         </p>
-        <p style="font-size:0.95rem; color:#B08060;">
-            Powered by LangGraph &middot; IBM MVP Demonstration
-        </p>
     </div>
     """, unsafe_allow_html=True)
 
