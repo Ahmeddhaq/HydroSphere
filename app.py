@@ -416,7 +416,10 @@ Current demonstration:
 <li>Simulated Reservoir Scenario</li>
 <li>Explainable AI Decision Making</li></p>
 <p><u>Scenario</u>: This dataset represents a region experiencing below-average rainfall, high temperatures, declining reservoir levels (38% capacity), and increasing agricultural and urban water demand. HydroSphere AI analyzes these conditions to determine an optimal and explainable water allocation strategy while balancing essential urban supply, agricultural irrigation, and environmental sustainability.</p>
-    <p>NOTE: This demonstration uses simulated data to showcase the decision-making capabilities of the multi-agent system.</p>
+<p><u>Who This Is For:</u>HydroSphere AI is designed for Reservoir Operations Teams managing critical water infrastructure. It consolidates weather forecasts, reservoir conditions, and demand insights into a single AI-assisted decision support platform for water release planning.</p>
+<p><u>Why This Matters:</u>Traditional reservoir management often requires decision-makers to consolidate weather forecasts, reservoir conditions, and water demand from multiple sources. HydroSphere AI accelerates this process by providing explainable, AI-assisted recommendations that support faster and more informed water allocation decisions.</p>
+<p><u>How It Works:</u>HydroSphere AI orchestrates six specialized AI agents using LangGraph. Each agent analyzes a specific domain—weather, reservoir status, agricultural demand, urban demand, and risk assessment—before passing its findings to the Decision Agent, which generates an explainable water allocation recommendation.</p>
+<p>NOTE: This demonstration uses simulated data to showcase the decision-making capabilities of the multi-agent system.</p>
 </div>
 """, unsafe_allow_html=True)
 
