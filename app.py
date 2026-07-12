@@ -399,6 +399,16 @@ tbody tr:hover td { background: rgba(196,82,26,0.05) !important; }
         display: none !important;
     }
 
+    /* Center all buttons in columns on mobile */
+    div[data-testid="column"] div[data-testid="stButton"] {
+        display: flex !important;
+        justify-content: center !important;
+        width: 100% !important;
+    }
+    div[data-testid="column"] div[data-testid="stButton"] > button {
+        width: auto !important;
+    }
+
     /* Block container margins and padding */
     .block-container {
         padding-left: 1rem !important;
@@ -530,6 +540,24 @@ with open("data/mock_data.json") as f:
 
 if "page" not in st.session_state:
     st.session_state.page = "landing"
+
+if "previous_page" not in st.session_state:
+    st.session_state.previous_page = st.session_state.page
+
+page_changed = False
+if st.session_state.page != st.session_state.previous_page:
+    page_changed = True
+    st.session_state.previous_page = st.session_state.page
+
+if page_changed:
+    st.markdown("""
+        <svg onload="
+            var mainContainer = window.parent.document.querySelector('section.main') || document.querySelector('section.main');
+            if (mainContainer) {
+                mainContainer.scrollTo({ top: 0, behavior: 'instant' });
+            }
+        " style="display:none;"></svg>
+    """, unsafe_allow_html=True)
 
 
 # ═══════════════════════════════════════════════════════════════════
