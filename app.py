@@ -380,19 +380,144 @@ tbody tr:hover td { background: rgba(196,82,26,0.05) !important; }
     line-height: 1.6;
 }
 
+/* ── Navbar, Hero, and Custom Classes ── */
+.nav-title {
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: #C4521A;
+    font-family: 'Inter', sans-serif;
+}
+.hero-section {
+    text-align: center;
+    padding: 4rem 1rem 3rem;
+}
+.hero-title {
+    font-size: 3.6rem;
+    font-weight: 800;
+    background: linear-gradient(90deg, #C4521A, #E07040, #A03A10);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin: 0 0 1.5rem 0;
+    line-height: 1.15;
+}
+.hero-subtitle {
+    font-size: 1.3rem;
+    color: #7A4A30;
+    max-width: 800px;
+    margin: 0 auto 1.5rem;
+    line-height: 1.7;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    text-align: center;
+}
+.landing-how-it-works {
+    border-top: 1px solid rgba(196,82,26,0.15);
+    margin-top: 2rem;
+}
+.landing-text-left {
+    font-size: 1.1rem;
+    color: #2A1408;
+    text-align: left !important;
+    line-height: 1.8;
+}
+.scenario-context {
+    font-size: 1.15rem;
+    line-height: 1.7;
+    color: #4A2511;
+    margin-bottom: 2rem;
+}
+
 /* ── Mobile Responsive ── */
 @media (max-width: 768px) {
 
+    /* Streamlit layout columns stacked on mobile */
+    div[data-testid="stHorizontalBlock"] {
+        flex-direction: column !important;
+        gap: 1.2rem !important;
+    }
+    div[data-testid="column"] {
+        width: 100% !important;
+        min-width: 100% !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+    /* Hide empty spacer columns on mobile */
+    div[data-testid="column"]:not(:has(.element-container)) {
+        display: none !important;
+    }
+
+    /* Block container margins and padding */
+    .block-container {
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+        padding-top: 1rem !important;
+        padding-bottom: 2rem !important;
+    }
+
+    /* Navbar logo */
+    .nav-title {
+        font-size: 1.8rem !important;
+        text-align: center !important;
+        margin-bottom: 0.5rem !important;
+    }
+
     /* Hero */
+    .hero-section {
+        padding: 2rem 0.5rem 1.5rem !important;
+    }
     .hero-banner {
         padding: 1.5rem 1.2rem;
         border-radius: 14px;
     }
     .hero-title {
-        font-size: 1.8rem;
+        font-size: 2.2rem !important;
+        margin-bottom: 1rem !important;
     }
     .hero-subtitle {
-        font-size: 0.9rem;
+        font-size: 1.05rem !important;
+        line-height: 1.5 !important;
+        margin-bottom: 1.2rem !important;
+    }
+
+    /* Problems & Layout Sections */
+    .landing-section {
+        padding: 1.5rem 0 !important;
+    }
+    .landing-title {
+        font-size: 1.7rem !important;
+        margin-bottom: 0.8rem !important;
+    }
+    .landing-text {
+        font-size: 1.05rem !important;
+        line-height: 1.6 !important;
+    }
+    .landing-text-left {
+        font-size: 1.0rem !important;
+        line-height: 1.6 !important;
+    }
+
+    /* Feature Grid stack */
+    .landing-feature-grid {
+        grid-template-columns: 1fr !important;
+        gap: 1.2rem !important;
+        margin-top: 1rem !important;
+    }
+    .landing-feature {
+        padding: 1rem 0 1rem 1.2rem !important;
+    }
+    .landing-feature-title {
+        font-size: 1.15rem !important;
+    }
+    .landing-feature-desc {
+        font-size: 0.95rem !important;
+    }
+
+    /* Dashboard details */
+    .scenario-context {
+        font-size: 1.0rem !important;
+        line-height: 1.5 !important;
+        margin-bottom: 1.2rem !important;
     }
 
     /* Metric + data cards fill full width */
@@ -411,14 +536,14 @@ tbody tr:hover td { background: rgba(196,82,26,0.05) !important; }
     .metric-value { font-size: 1.3rem; }
 
     /* Section headers */
-    .section-header { font-size: 0.9rem; }
+    .section-header { font-size: 0.95rem; }
 
     /* KV rows wrap on tiny screens */
     .kv-row {
         flex-wrap: wrap;
         gap: 0.25rem;
     }
-    .kv-key, .kv-val { font-size: 0.8rem; }
+    .kv-key, .kv-val { font-size: 0.85rem; }
 
     /* Analysis items */
     .analysis-item span { font-size: 0.82rem; }
@@ -428,7 +553,7 @@ tbody tr:hover td { background: rgba(196,82,26,0.05) !important; }
 }
 
 @media (max-width: 480px) {
-    .hero-title   { font-size: 1.4rem; }
+    .hero-title   { font-size: 1.6rem !important; }
     .hero-badge   { font-size: 0.65rem; }
     .metric-value { font-size: 1.1rem; }
     .result-title { font-size: 0.85rem; }
@@ -464,9 +589,9 @@ if st.session_state.page == "landing":
     # ── Navbar ──
     nav_col1, nav_col2 = st.columns([5, 1.2])
     with nav_col1:
-        st.markdown('<div style="font-size: 2.2rem; font-weight: 800; color: #C4521A; font-family: \'Inter\', sans-serif;">HydroSphere AI</div>', unsafe_allow_html=True)
+        st.markdown('<div class="nav-title">HydroSphere AI</div>', unsafe_allow_html=True)
     with nav_col2:
-        if st.button("Test Product", key="nav_test_product"):
+        if st.button("Test Product", key="nav_test_product", use_container_width=True):
             st.session_state.page = "dashboard"
             st.rerun()
 
@@ -474,10 +599,10 @@ if st.session_state.page == "landing":
 
     # ── Hero ──────────────────────────────────────────────────────
     st.markdown("""
-    <div style="text-align:center; padding: 4rem 1rem 3rem;">
+    <div class="hero-section">
         <div class="hero-badge">Multi-Agent AI Platform</div>
-        <h1 class="hero-title" style="font-size:3.6rem; margin-bottom:1.5rem;">Water Intelligence System</h1>
-        <p style="font-size:1.3rem; color:#7A4A30; max-width:800px; margin:0 auto 1.5rem; line-height:1.7;">
+        <h1 class="hero-title">Water Intelligence System</h1>
+        <p class="hero-subtitle">
             Six specialized AI agents working in concert to analyze weather conditions,
             assess risk, and produce transparent, explainable allocation decisions, in real time.
         </p>
@@ -538,9 +663,9 @@ if st.session_state.page == "landing":
 
     # ── How It Works ─────────────────────────────────────────────
     st.markdown("""
-    <div class="landing-section" style="max-width: 900px; padding: 2rem 0; border-top: 1px solid rgba(196,82,26,0.15);">
-        <h2 class="landing-title" style="font-size: 2rem;">How It Works</h2>
-        <p class="landing-text" style="font-size: 1.1rem; color: #2A1408; text-align: left; line-height: 1.8;">
+    <div class="landing-section landing-how-it-works">
+        <h2 class="landing-title">How It Works</h2>
+        <p class="landing-text landing-text-left">
             HydroSphere AI orchestrates six specialized AI agents using <strong>LangGraph</strong>.
             Each agent analyzes a specific domain in sequence, weather, reservoir status, agricultural demand,
             urban demand, and risk, before passing its findings to the <strong>Decision Agent</strong>,
@@ -570,9 +695,9 @@ elif st.session_state.page == "dashboard":
     # ── Navbar ──
     nav_col1, nav_col2 = st.columns([5, 1.2])
     with nav_col1:
-        st.markdown('<div style="font-size: 2.2rem; font-weight: 800; color: #C4521A; font-family: \'Inter\', sans-serif;">HydroSphere AI</div>', unsafe_allow_html=True)
+        st.markdown('<div class="nav-title">HydroSphere AI</div>', unsafe_allow_html=True)
     with nav_col2:
-        if st.button("← Back to Overview", key="back_to_landing"):
+        if st.button("← Back to Overview", key="back_to_landing", use_container_width=True):
             st.session_state.page = "landing"
             st.rerun()
 
@@ -586,7 +711,7 @@ elif st.session_state.page == "dashboard":
 
     # ── Scenario Context ──
     st.markdown("""
-    <div style="font-size: 1.15rem; line-height: 1.7; color: #4A2511; margin-bottom: 2rem;">
+    <div class="scenario-context">
         <strong>Live Demonstration Scenario:</strong> This dataset represents a region experiencing below-average rainfall, high temperatures, declining reservoir levels (38% capacity), and increasing agricultural and urban water demand. HydroSphere AI analyzes these conditions to determine an optimal and explainable water allocation strategy while balancing essential urban supply, agricultural irrigation, and environmental sustainability.
     </div>
     """, unsafe_allow_html=True)
