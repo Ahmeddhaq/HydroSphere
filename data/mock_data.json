@@ -5,21 +5,18 @@
         "rainfall_forecast": "Low",
         "evaporation_rate": "High"
     },
-
     "reservoir": {
         "capacity": 100,
         "current_storage": 38,
         "daily_inflow": 5,
         "daily_outflow": 8
     },
-
     "agriculture": {
         "crop": "Rice",
-        "area": 2500,
+        "area": 50,
         "soil_moisture": 22,
         "season": "Summer"
     },
-
     "urban": {
         "population": 1200000,
         "daily_consumption": 155,
