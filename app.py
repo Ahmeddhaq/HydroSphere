@@ -1023,10 +1023,42 @@ elif st.session_state.page == "dashboard":
                         recommendation = rec_str.replace("_", " ").replace("{", "").replace("}", "").replace("[", "").replace("]", "").replace("'", "")
                 else:
                     recommendation = rec_str
+            import re
+            
+            # Format recommendation if it has numbered list items like (1), (2), etc.
+            rec_html = ""
+            pattern = r'\s*\((\d+)\)\s*'
+            parts = re.split(pattern, recommendation)
+            
+            if len(parts) <= 1:
+                rec_html = f'<div style="color: #3A1A08; font-size: 1.0rem; line-height: 1.6;">{recommendation}</div>'
+            else:
+                intro = parts[0].strip()
+                if intro:
+                    rec_html += f'<div style="margin-bottom: 0.8rem; font-weight: 600; color: #3A1A08; font-size: 1.05rem;">{intro}</div>'
+                
+                rec_html += '<ul style="list-style-type: none; padding-left: 0; margin: 0; display: flex; flex-direction: column; gap: 0.8rem;">'
+                for i in range(1, len(parts), 2):
+                    num = parts[i]
+                    content = parts[i+1].strip()
+                    rec_html += f"""
+                    <li style="display: flex; align-items: flex-start; gap: 0.8rem; line-height: 1.6;">
+                        <span style="display: inline-flex; align-items: center; justify-content: center; background: #C4521A; color: white; font-weight: 700; border-radius: 50%; min-width: 1.5rem; height: 1.5rem; font-size: 0.85rem; margin-top: 0.15rem; flex-shrink: 0;">
+                            {num}
+                        </span>
+                        <span style="color: #3A1A08; font-size: 1.0rem;">
+                            {content}
+                        </span>
+                    </li>
+                    """
+                rec_html += '</ul>'
+
             st.markdown(f"""
             <div class="result-card" style="height:100%">
                 <div class="result-title">Risk Recommendation</div>
-                <div class="reasoning-box" style="border-left-color:#C4521A;">{recommendation}</div>
+                <div class="reasoning-box" style="border-left-color:#C4521A;">
+                    {rec_html}
+                </div>
             </div>""", unsafe_allow_html=True)
 
         st.markdown('<div style="margin-top:1.5rem"></div>', unsafe_allow_html=True)
