@@ -13,7 +13,7 @@
     },
     "agriculture": {
         "crop": "Rice",
-        "area": 50,
+        "area": 5,
         "soil_moisture": 22,
         "season": "Summer"
     },
