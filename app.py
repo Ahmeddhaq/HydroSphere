@@ -1136,9 +1136,48 @@ elif st.session_state.page == "dashboard":
 
         # ── AI Reasoning ──
         st.markdown("#### AI Decision Reasoning")
+        
+        reasoning_data = decision.get("reasoning", "No reasoning provided.")
+        reasoning_html = ""
+        
+        # Try to parse string to dict if it is a string representation of a JSON/dict
+        if isinstance(reasoning_data, str):
+            reasoning_data = reasoning_data.strip()
+            if reasoning_data.startswith("{"):
+                import json as _json
+                try:
+                    reasoning_data = _json.loads(reasoning_data)
+                except Exception:
+                    import ast as _ast
+                    try:
+                        reasoning_data = _ast.literal_eval(reasoning_data)
+                    except Exception:
+                        pass
+                        
+        if isinstance(reasoning_data, dict):
+            reasoning_html = '<div style="display: flex; flex-direction: column; gap: 1.2rem;">'
+            items = list(reasoning_data.items())
+            for idx, (r_key, r_val) in enumerate(items):
+                r_title = r_key.replace("_", " ").title()
+                is_last = (idx == len(items) - 1)
+                border_style = "" if is_last else "border-bottom: 1px solid rgba(196,82,26,0.15); padding-bottom: 0.8rem;"
+                reasoning_html += f"""
+                <div style="{border_style}">
+                    <div style="font-weight: 700; color: #C4521A; font-size: 1.05rem; margin-bottom: 0.3rem;">
+                        {r_title}
+                    </div>
+                    <div style="color: #3A1A08; font-size: 1.0rem; line-height: 1.6;">
+                        {r_val}
+                    </div>
+                </div>
+                """
+            reasoning_html += '</div>'
+        else:
+            reasoning_html = f'<div style="color: #3A1A08; font-size: 1.0rem; line-height: 1.6;">{reasoning_data}</div>'
+
         st.markdown(f"""
         <div class="reasoning-box">
-            {decision.get("reasoning", "No reasoning provided.")}
+            {reasoning_html}
         </div>
         """, unsafe_allow_html=True)
 
