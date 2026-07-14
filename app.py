@@ -1111,6 +1111,12 @@ elif st.session_state.page == "dashboard":
             )
             st.plotly_chart(fig_bar, use_container_width=True)
 
+        # Calculate Liter-based distribution
+        total_outflow = reservoir.get("daily_outflow", 0)
+        agri_liters = (agri_pct / 100.0) * total_outflow
+        urban_liters = (urban_pct / 100.0) * total_outflow
+        env_liters = (env_pct / 100.0) * total_outflow
+
         # ── Allocation Metric Cards ──
         m1, m2, m3 = st.columns(3)
         with m1:
@@ -1118,18 +1124,21 @@ elif st.session_state.page == "dashboard":
             <div class="metric-card" style="border-color: rgba(196,82,26,0.5); text-align:center; padding:1.4rem;">
                 <div class="metric-label" style="color:#C4521A">Agriculture</div>
                 <div class="metric-value" style="color:#C4521A; font-size:2.5rem">{agri_pct}%</div>
+                <div style="font-size:1.15rem; color:#C4521A; font-weight:600; margin-top:0.4rem; opacity:0.9;">({agri_liters:.1f} L/d)</div>
             </div>""", unsafe_allow_html=True)
         with m2:
             st.markdown(f"""
             <div class="metric-card" style="border-color: rgba(122,74,48,0.5); text-align:center; padding:1.4rem;">
                 <div class="metric-label" style="color:#7A4A30">Urban</div>
                 <div class="metric-value" style="color:#7A4A30; font-size:2.5rem">{urban_pct}%</div>
+                <div style="font-size:1.15rem; color:#7A4A30; font-weight:600; margin-top:0.4rem; opacity:0.9;">({urban_liters:.1f} L/d)</div>
             </div>""", unsafe_allow_html=True)
         with m3:
             st.markdown(f"""
             <div class="metric-card" style="border-color: rgba(212,168,130,0.7); text-align:center; padding:1.4rem;">
                 <div class="metric-label" style="color:#B08060">Environmental Reserve</div>
                 <div class="metric-value" style="color:#B08060; font-size:2.5rem">{env_pct}%</div>
+                <div style="font-size:1.15rem; color:#B08060; font-weight:600; margin-top:0.4rem; opacity:0.9;">({env_liters:.1f} L/d)</div>
             </div>""", unsafe_allow_html=True)
 
         st.markdown('<div style="margin-top:1.5rem"></div>', unsafe_allow_html=True)
