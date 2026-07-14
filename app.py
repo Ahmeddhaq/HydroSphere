@@ -824,6 +824,7 @@ elif st.session_state.page == "dashboard":
     fig_gauge = go.Figure(go.Indicator(
         mode="gauge+number+delta",
         value=storage_pct,
+        domain={'x': [0, 1], 'y': [0, 1]},
         title={"text": "Reservoir Storage Level", "font": {"size": 18, "color": "#7A4A30", "family": "Inter"}},
         number={"suffix": "%", "font": {"size": 36, "color": "#2A1408", "family": "Inter"}},
         delta={"reference": 60, "increasing": {"color": "#5A9040"}, "decreasing": {"color": "#C4521A"}},
