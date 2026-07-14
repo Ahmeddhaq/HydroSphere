@@ -1041,25 +1041,21 @@ elif st.session_state.page == "dashboard":
                 for i in range(1, len(parts), 2):
                     num = parts[i]
                     content = parts[i+1].strip()
-                    rec_html += f"""
-                    <li style="display: flex; align-items: flex-start; gap: 0.8rem; line-height: 1.6;">
-                        <span style="display: inline-flex; align-items: center; justify-content: center; background: #C4521A; color: white; font-weight: 700; border-radius: 50%; min-width: 1.5rem; height: 1.5rem; font-size: 0.85rem; margin-top: 0.15rem; flex-shrink: 0;">
-                            {num}
-                        </span>
-                        <span style="color: #3A1A08; font-size: 1.0rem;">
-                            {content}
-                        </span>
-                    </li>
-                    """
+                    rec_html += (
+                        f'<li style="display: flex; align-items: flex-start; gap: 0.8rem; line-height: 1.6;">'
+                        f'<span style="display: inline-flex; align-items: center; justify-content: center; background: #C4521A; color: white; font-weight: 700; border-radius: 50%; min-width: 1.5rem; height: 1.5rem; font-size: 0.85rem; margin-top: 0.15rem; flex-shrink: 0;">{num}</span>'
+                        f'<span style="color: #3A1A08; font-size: 1.0rem;">{content}</span>'
+                        f'</li>'
+                    )
                 rec_html += '</ul>'
 
-            st.markdown(f"""
-            <div class="result-card" style="height:100%">
-                <div class="result-title">Risk Recommendation</div>
-                <div class="reasoning-box" style="border-left-color:#C4521A;">
-                    {rec_html}
-                </div>
-            </div>""", unsafe_allow_html=True)
+            st.markdown(
+                f'<div class="result-card" style="height:100%">'
+                f'<div class="result-title">Risk Recommendation</div>'
+                f'<div class="reasoning-box" style="border-left-color:#C4521A;">{rec_html}</div>'
+                f'</div>',
+                unsafe_allow_html=True
+            )
 
         st.markdown('<div style="margin-top:1.5rem"></div>', unsafe_allow_html=True)
 
@@ -1202,24 +1198,19 @@ elif st.session_state.page == "dashboard":
                 r_title = r_key.replace("_", " ").title()
                 is_last = (idx == len(items) - 1)
                 border_style = "" if is_last else "border-bottom: 1px solid rgba(196,82,26,0.15); padding-bottom: 0.8rem;"
-                reasoning_html += f"""
-                <div style="{border_style}">
-                    <div style="font-weight: 700; color: #C4521A; font-size: 1.05rem; margin-bottom: 0.3rem;">
-                        {r_title}
-                    </div>
-                    <div style="color: #3A1A08; font-size: 1.0rem; line-height: 1.6;">
-                        {r_val}
-                    </div>
-                </div>
-                """
+                reasoning_html += (
+                    f'<div style="{border_style}">'
+                    f'<div style="font-weight: 700; color: #C4521A; font-size: 1.05rem; margin-bottom: 0.3rem;">{r_title}</div>'
+                    f'<div style="color: #3A1A08; font-size: 1.0rem; line-height: 1.6;">{r_val}</div>'
+                    f'</div>'
+                )
             reasoning_html += '</div>'
         else:
             reasoning_html = f'<div style="color: #3A1A08; font-size: 1.0rem; line-height: 1.6;">{reasoning_data}</div>'
 
-        st.markdown(f"""
-        <div class="reasoning-box">
-            {reasoning_html}
-        </div>
-        """, unsafe_allow_html=True)
+        st.markdown(
+            f'<div class="reasoning-box">{reasoning_html}</div>',
+            unsafe_allow_html=True
+        )
 
     st.markdown('<div style="margin-top:2rem; text-align:center; color:#B08060; font-size:0.78rem;">Powered by HydroSphere AI · Multi-Agent LangGraph Pipeline · IBM MVP</div>', unsafe_allow_html=True)
